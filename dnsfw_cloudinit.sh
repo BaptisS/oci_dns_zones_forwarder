@@ -30,7 +30,7 @@ complist=\$(oci iam compartment list --all --auth instance_principal --compartme
 complistcur=\$(echo \$complist | jq .data | jq -r '.[] | ."id"')
 rm -f /home/opc/autodns/zonelist.log
 rm -f /home/opc/autodns/named.conf
-rm -f f/home/opc/autodns/forwardwlist.named
+rm -f /home/opc/autodns/forwardwlist.named
 
 cat /home/opc/autodns/stdnamedconf.ref > /home/opc/autodns/named.conf
 for compocid in \$complistcur; do oci dns zone list --compartment-id \$compocid --all --auth instance_principal --scope PRIVATE | jq .data | jq -r '.[] | ."name"' >> /home/opc/autodns/zonelist.log ; done
