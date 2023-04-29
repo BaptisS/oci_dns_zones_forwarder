@@ -35,8 +35,8 @@ rm -f /home/opc/autodns/forwardwlist.named
 cat /home/opc/autodns/stdnamedconf.ref > /home/opc/autodns/named.conf
 for compocid in \$complistcur; do oci dns zone list --compartment-id \$compocid --all --auth instance_principal --scope PRIVATE | jq .data | jq -r '.[] | ."name"' >> /home/opc/autodns/zonelist.log ; done
 ## Exclude reverse lookup zones
-\cp -f /home/opc/autodns/zonelist.log /home/opc/autodns/zonelist-ptr.log
-sed -i -e '/^[0-9]/d' /home/opc/autodns/zonelist.log 
+## \cp -f /home/opc/autodns/zonelist.log /home/opc/autodns/zonelist-ptr.log
+## sed -i -e '/^[0-9]/d' /home/opc/autodns/zonelist.log 
 ## Exclude reverse lookup zones
 zones=\$(cat /home/opc/autodns/zonelist.log)
 for zone in \$zones; do . /home/opc/autodns/named.autoconf.builder.sh \$zone ; done
