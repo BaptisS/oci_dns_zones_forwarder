@@ -8,6 +8,6 @@ for compocid in $complistcur; do echo Listing DNS Zones in $compocid && oci dns 
 zones=$(cat zonelist.log)
 for zone in $zones; do echo formating zone $zone && ./named.builder.sh $zone ; done
 sed -i 's/169.254.169.254/'$listenerip'/g' forwardwlist.named
-cat forwardwlist.named >> $filename
+cat forwardwlist.named > $filename
 path=$(pwd)
 echo $path/$filename
